@@ -9,3 +9,5 @@ Route::post('/', [AnswerChek::class, 'Next'] );
 Route::post('/check-answer', [AnswerChek::class, 'Check'] );
 
 Route::get('/congrats', [AnswerChek::class, 'End']);
+
+Route::get('/level/{niveau}', [AnswerChek::class, 'debug']);

@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const briefingContainer = document.getElementById('briefing');
 
     const startBtn = document.getElementById("start-btn");
-    const questionContainer = document.getElementById("question-container");
 
     let currentPage = 0;
 
@@ -12,11 +11,12 @@ document.addEventListener("DOMContentLoaded", () => {
             briefingText.innerText = briefingPages[currentPage];
             currentPage++;
         } else {
-            // Fin du briefing, on passe à la question
             briefingContainer.classList.add('hidden');
-            questionContainer.classList.remove('hidden');
+            document.getElementById('body').classList.add('started');
         }
     }
+
+
 
     startBtn.addEventListener('click', showNextPage);
 

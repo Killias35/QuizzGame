@@ -14,7 +14,9 @@ export default defineConfig({
         rollupOptions: {
             input: [
                 'resources/js/quiz.js',
-                'resources/css/quiz.css'
+                'resources/css/quiz.css',
+                'resources/css/special6.css', 
+                'resources/js/special6.js'
             ]
         }
     }

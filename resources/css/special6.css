@@ -1,0 +1,83 @@
+/* Container */
+#click-faith-container {
+  text-align: center;
+  padding: 40px;
+  background-color: rgba(0,0,0,0.85);
+  border-radius: 15px;
+  box-shadow: 0 0 30px gold;
+  color: white;
+  font-family: 'Georgia', serif;
+  position: relative;
+}
+
+/* Compteur */
+#click-count {
+  display: block;
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+/* Boutons */
+#click-button, #cheat-button {
+  margin: 10px;
+  padding: 20px 40px;
+  font-size: 1.5em;
+  background-color: #111;
+  color: gold;
+  border: 2px solid #555;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, opacity 0.5s;
+}
+
+/* Hover */
+#click-button:hover, #cheat-button:hover {
+  background-color: #222;
+}
+
+/* Tricher : invisible et non-cliquable au départ */
+#cheat-button {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color: crimson;
+  color: white;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Commentaire */
+.commentary {
+  margin-top: 30px;
+  font-size: 1.2em;
+  min-height: 1.5em;
+  color: #ccc;
+}
+
+/* Masque le form final */
+.hidden {
+  display: none;
+}
+
+#cheat-button {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 5px 10px;
+  font-size: 0.7em;
+  opacity: 0;
+  cursor: pointer;
+  pointer-events: none; /* désactive clics */
+  border-radius: 5px;
+  z-index: 1000;
+  transition: opacity 10s ease;
+}
+
+/* classe pour déclencher l’apparition */
+#cheat-button.visible {
+  opacity: 1;
+  pointer-events: auto; /* active clics */
+}

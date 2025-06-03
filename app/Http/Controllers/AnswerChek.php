@@ -62,16 +62,28 @@ class AnswerChek extends Controller
                 "La tu m'épates, félicitations",
                 'Je vois que tu es bien renseigné sur moi mais ca ne me suffit pas',
                 "Quoi ? t'es pas content ?",
-                "Je m'en fous",
+                "tres bien alors adieux",
+                "",
+                ".",
+                "..",
+                "...",
+                "bon ok puisque tu insister, je vais te donner une derniere chance",
+                "Prouve ta foi envers moi et ensuite nous continuerons",
             ],
             7 => [
-                'Le temps presse.',
+                'Je vois que tu a été très rapide !',
+                "meme un peu trop si tu veux savoir...",
             ],
             8 => [
-                'Dernière épreuve.',
+                "hmmmmmmm je vois...",
+                "Je dois dire que je m'en doutais...",
+                "dans ce cas je vais te punir !",
+                "Tu vas devoir attraper ce ballon et le jeter dans la poubelle !"
             ],
             9 => [
-                'Tu as réussi...',
+                'Te revoila ?',
+                "j'en ai pas fini avec toi !",
+                "Tu cherche a t'amuser avec moi ? alors je vais te retirer tout le fun de ce monde !",
             ],
         ];
 
@@ -82,9 +94,9 @@ class AnswerChek extends Controller
             3 => 'Qui est le GRAND messi de LA PROGRAMMATION en 2025 ?',
             4 => "Quel âge est-ce que j'ai ?",
             5 => 'Je fais quel taille ? (?m??)',
-            6 => 'Trouve la solution pour te sortir de la...',
-            7 => '',
-            8 => '',
+            6 => 'pas besoin',
+            7 => "tu es bien un humain n'est-ce pas ??",
+            8 => 'pas besoin',
             9 => '',
         ];
 
@@ -95,12 +107,17 @@ class AnswerChek extends Controller
             3 => 'killias',
             4 => '21',
             5 => '1m64',
-            6 => 'special:special7',
-            7 => '',
-            8 => '',
-            9 => '',
+            6 => 'faith_proven',
+            7 => 'non',
+            8 => 'gg',
+            9 => 'bravo',
         ];
 
+        $this->specials = [
+          6 => 'partial.special6',  
+          8 => 'partial.special8',
+          9 => 'partial.special9',
+        ];
     }
 
     private function isCorrect($questionid, $answer)
@@ -125,10 +142,14 @@ class AnswerChek extends Controller
         return view('status', compact('questionid', 'correct'));
     }
 
-    public function Next(Request $request)
+    public function Next(Request $request, int $debug = null)
     {
         $questionid = (int) $request->input('questionid');
         $correct = $request->input('correct');
+
+        if ($debug) {
+            $questionid = $debug;
+        }
 
         if ($correct == true && $questionid !== null && $questionid >= 0) {
             $questionid += 1;
@@ -142,18 +163,22 @@ class AnswerChek extends Controller
         $question = $this->questions[$questionid];
         $briefing = $this->briefing[$questionid];
         $reelAnswer = $this->questionAnswer[$questionid];
+        $viewdata = "partial.quiz";
 
-        if (str_contains($reelAnswer, 'special:')) {
-            $viewname = str_replace('special:', '', $reelAnswer);
-
-            return view($viewname, compact('questionid', 'question', 'briefing'));
+        if (array_key_exists($questionid, $this->specials)) {
+            $viewdata = $this->specials[$questionid];
         }
-
-        return view('quiz', compact('questionid', 'question', 'briefing'));
+        
+        return view('game', compact('questionid', 'question', 'briefing', 'viewdata'));
     }
 
     public function End()
     {
         return view('finish');
+    }
+
+    public function debug(Request $request, int $questionid)
+    {
+        return $this->Next($request, $questionid);
     }
 }

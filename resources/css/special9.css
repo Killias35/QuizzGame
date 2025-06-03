@@ -1,0 +1,72 @@
+#hidden-zone {
+  position: absolute;
+  color: gold;
+  font-size: 1.5em;
+  /* position as needed */
+}
+
+
+.el1 {
+    opacity: 1;
+    transition: left 60s ease;
+    pointer-events: auto;
+    height: 10%;
+    width: 10%;
+    position: absolute;
+
+    left: -200px;
+    z-index: -1;
+}
+
+.el1.visible{
+    position: absolute;
+    left: -125px;
+}
+
+.el1.clicked{
+    transition: none;
+    transition: left 1 ease;
+    left: 40%;
+}
+
+.inactive{
+    pointer-events: none;
+}
+
+.yell {
+  animation: shoutEffect 0.25s ease-in-out infinite;
+  font-weight: bold;
+  font-size: 64px;
+  letter-spacing: 1px;
+  padding: 16px;
+}
+
+@keyframes shoutEffect {
+  0% {
+    transform: translate(0, 0) scale(1);
+    color: white;
+    text-shadow: none;
+  }
+  25% {
+    transform: translate(-2px, 2px) scale(1.1);
+    color: red;
+    text-shadow: 2px 2px 8px rgba(255, 0, 0, 0.8);
+  }
+  50% {
+    transform: translate(2px, -2px) scale(1.2);
+    color: yellow;
+    text-shadow: 0 0 10px rgba(255, 255, 0, 0.9);
+  }
+  75% {
+    transform: translate(-3px, 1px) scale(1.15);
+    color: orange;
+    text-shadow: 3px 3px 6px rgba(255, 100, 0, 0.7);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+    color: white;
+    text-shadow: none;
+  }
+}
+
+
