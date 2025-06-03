@@ -158,7 +158,7 @@ class AnswerChek extends Controller
         }
 
         if ($questionid >= count($this->questions)) {
-            $questionid = 0;
+            return view('finish');
         }
         $question = $this->questions[$questionid];
         $briefing = $this->briefing[$questionid];
