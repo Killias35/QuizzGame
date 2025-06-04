@@ -16,7 +16,11 @@ export default defineConfig({
                 'resources/js/quiz.js',
                 'resources/css/quiz.css',
                 'resources/css/special6.css', 
-                'resources/js/special6.js'
+                'resources/js/special6.js',
+                'resources/css/special8.css',
+                'resources/js/special8.js',
+                'resources/css/special9.css',
+                'resources/js/special9.js'
             ]
         }
     }
